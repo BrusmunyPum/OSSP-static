@@ -1,0 +1,618 @@
+/* ============================================
+   Animation System — scroll-triggered + micro
+   ============================================ */
+
+/* --- Base hidden states for scroll reveals --- */
+[data-anim] {
+  opacity: 0;
+  will-change: opacity, transform;
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+[data-anim].in-view {
+  opacity: 1;
+  transform: translate(0, 0) scale(1) !important;
+}
+
+/* Fade up */
+[data-anim="fade-up"] {
+  transform: translateY(48px);
+}
+
+/* Fade down */
+[data-anim="fade-down"] {
+  transform: translateY(-36px);
+}
+
+/* Fade left */
+[data-anim="fade-left"] {
+  transform: translateX(-48px);
+}
+
+/* Fade right */
+[data-anim="fade-right"] {
+  transform: translateX(48px);
+}
+
+/* Scale up from small */
+[data-anim="zoom-in"] {
+  transform: scale(0.88);
+}
+
+/* Flip up (card-like) */
+[data-anim="flip-up"] {
+  transform: perspective(800px) rotateX(8deg) translateY(30px);
+}
+
+/* Slide in + blur */
+[data-anim="blur-in"] {
+  filter: blur(8px);
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+    filter 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+[data-anim="blur-in"].in-view {
+  filter: blur(0);
+}
+
+/* Clip reveal (left to right wipe) */
+[data-anim="clip-left"] {
+  clip-path: inset(0 100% 0 0);
+  opacity: 1;
+  transition: clip-path 0.85s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+[data-anim="clip-left"].in-view {
+  clip-path: inset(0 0 0 0);
+}
+
+/* Clip reveal (bottom to top) */
+[data-anim="clip-up"] {
+  clip-path: inset(100% 0 0 0);
+  opacity: 1;
+  transition: clip-path 0.85s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+[data-anim="clip-up"].in-view {
+  clip-path: inset(0 0 0 0);
+}
+
+/* Stagger delay utility — applied via data-delay="N" */
+[data-delay="1"] { transition-delay: 0.1s; }
+[data-delay="2"] { transition-delay: 0.2s; }
+[data-delay="3"] { transition-delay: 0.3s; }
+[data-delay="4"] { transition-delay: 0.4s; }
+[data-delay="5"] { transition-delay: 0.5s; }
+[data-delay="6"] { transition-delay: 0.6s; }
+[data-delay="7"] { transition-delay: 0.7s; }
+
+
+/* --- Hero entrance (always visible, animate on load) --- */
+@keyframes heroFadeDown {
+  from { opacity: 0; transform: translateY(-32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes heroPulse {
+  0%, 100% { transform: translateY(-50%) scale(1); }
+  50%      { transform: translateY(-50%) scale(1.03); }
+}
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(-50%); }
+  50%      { transform: translateY(calc(-50% - 12px)); }
+}
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245, 217, 79, 0.35); }
+  50%      { box-shadow: 0 0 0 8px rgba(245, 217, 79, 0); }
+}
+
+.hero-subtitle {
+  animation: heroFadeDown 0.8s 0.2s both;
+}
+.hero-title {
+  animation: heroFadeDown 0.8s 0.45s both;
+}
+.hero-btn {
+  animation: heroFadeUp 0.7s 0.7s both;
+}
+.hero-floating-img {
+  animation: heroFloat 4.5s ease-in-out infinite;
+}
+.hero-right-text {
+  animation: heroFadeUp 0.7s 0.9s both;
+}
+.hero-dot.active {
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+/* About page hero entrance */
+.about-hero-title {
+  animation: heroFadeDown 0.8s 0.2s both;
+}
+.about-hero-heading {
+  animation: heroFadeDown 0.8s 0.5s both;
+}
+.about-hero-desc {
+  animation: heroFadeUp 0.7s 0.75s both;
+}
+.about-hero-chevron {
+  animation: heroFadeUp 0.6s 1s both;
+}
+@keyframes chevronBounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(8px); }
+}
+.about-hero-chevron {
+  animation: heroFadeUp 0.6s 1s both, chevronBounce 2s 1.8s ease-in-out infinite;
+}
+
+/* About hero bg slow zoom */
+.about-hero-bg {
+  animation: slowZoom 12s ease-out forwards;
+}
+
+/* Products / Contact hero entrance */
+.products-hero-content,
+.contact-hero {
+  animation: heroFadeUp 0.7s 0.2s both;
+}
+.hero-accent-line {
+  animation: lineGrow 0.6s 0.6s both;
+  transform-origin: left;
+}
+
+/* Office cards stagger */
+.office-card {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.office-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* Contact form inputs focus glow */
+.form-group input:focus,
+.form-group textarea:focus {
+  box-shadow: 0 0 0 3px rgba(47, 105, 207, 0.15);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Submit button */
+.form-submit-btn {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s;
+}
+.form-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(47, 105, 207, 0.3);
+}
+
+/* Products page cards */
+.pg-card {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.pg-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.12);
+}
+.pg-card-img img {
+  transition: transform 0.5s ease;
+}
+.pg-card:hover .pg-card-img img {
+  transform: scale(1.06);
+}
+
+/* Category blocks */
+.category-block {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.category-block:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
+}
+
+
+/* --- Section line draw-in --- */
+@keyframes lineGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+.section-line,
+.consult-divider,
+.mission-divider {
+  transform-origin: left;
+}
+.in-view .section-line,
+.in-view .consult-divider,
+.in-view .mission-divider,
+[data-anim].in-view .section-line {
+  animation: lineGrow 0.6s 0.15s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+.industries-title-row .section-line {
+  transform-origin: center;
+}
+
+
+/* --- Counter tick-up --- */
+@keyframes countPop {
+  0%   { transform: scale(0.7); opacity: 0; }
+  60%  { transform: scale(1.08); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.about-stat.in-view .about-stat-value {
+  animation: countPop 0.5s ease both;
+}
+
+
+/* --- Hover micro-animations --- */
+
+/* Buttons — subtle lift */
+.hero-btn,
+.pill-btn,
+.outline-btn,
+.consult-cta-btn,
+.pill-btn-outline,
+.work-btn,
+.learn-more-link,
+.product-cta-btn,
+.article-read-more,
+.contact-submit,
+.submit-btn {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s, color 0.3s, border-color 0.3s;
+}
+.hero-btn:hover,
+.pill-btn:hover,
+.outline-btn:hover,
+.pill-btn-outline:hover,
+.product-cta-btn:hover,
+.contact-submit:hover,
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+.consult-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(212, 42, 42, 0.35);
+}
+
+/* Feature-link cards — zoom overlay */
+.feature-link img {
+  transition: transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.feature-link:hover img {
+  transform: scale(1.08);
+}
+.feature-link-label {
+  transition: padding-left 0.3s ease, background 0.3s ease;
+}
+.feature-link:hover .feature-link-label {
+  padding-left: 24px;
+}
+
+/* Product cards — lift */
+.product-card {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 32px rgba(18, 28, 52, 0.14);
+}
+.product-card-img img {
+  transition: transform 0.5s ease;
+}
+.product-card:hover .product-card-img img {
+  transform: scale(1.06);
+}
+
+/* Industry tiles — dark overlay lighten + text slide */
+.industry-tile img {
+  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.industry-tile:hover img {
+  transform: scale(1.1);
+}
+.industry-tile span {
+  transition: transform 0.35s ease, letter-spacing 0.35s ease;
+}
+.industry-tile:hover span {
+  transform: translateY(-4px);
+  letter-spacing: 1px;
+}
+
+/* Stat cards — bounce on hover */
+.about-stat {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.about-stat:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(18, 28, 52, 0.16);
+}
+
+/* Services frame — subtle glow */
+.services-carousel,
+.services-viewport {
+  transition: box-shadow 0.4s ease;
+}
+.services-carousel:hover .services-viewport {
+  box-shadow: 0 22px 50px rgba(33, 57, 107, 0.24);
+}
+
+/* Step cards — number color change */
+.step-card {
+  transition: transform 0.3s ease;
+}
+.step-card:hover {
+  transform: translateX(6px);
+}
+.step-card:hover .step-number {
+  color: #2f69cf;
+  transition: color 0.3s ease;
+}
+
+/* Testimonial cards */
+.testimonial-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(18, 28, 52, 0.1);
+}
+
+/* Partner logos — grayscale to color */
+.partner-logo {
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: grayscale(30%);
+}
+.partner-logo:hover {
+  transform: scale(1.12);
+  filter: grayscale(0%);
+}
+
+/* Learn more icon — rotate */
+.learn-more-icon {
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+.learn-more-link:hover .learn-more-icon {
+  transform: translateX(3px);
+  background: #2f69cf;
+  color: #ffffff;
+}
+
+/* Hero arrows — background brighten */
+.hero-arrow {
+  transition: background 0.25s ease;
+}
+.hero-arrow:hover {
+  background: rgba(255, 255, 255, 0.32);
+}
+
+/* Scroll top — spin on hover */
+.scroll-top {
+  transition: transform 0.3s ease, background 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+}
+.scroll-top:hover {
+  transform: translateY(-4px) rotate(-10deg);
+}
+
+/* Nav links — underline slide */
+.nav-link {
+  position: relative;
+}
+.nav-link::before {
+  content: '';
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 18px;
+  height: 2px;
+  background: #f5d94f;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+.nav-link:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Footer links — indent on hover */
+.footer-col a {
+  transition: padding-left 0.25s ease, color 0.25s ease;
+}
+.footer-col a:hover {
+  padding-left: 6px;
+}
+
+/* --- About page micro-animations --- */
+
+/* Commitment cards */
+.commitment-card {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.commitment-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Puzzle pieces */
+.puzzle-piece {
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+.puzzle-piece:hover {
+  transform: scale(1.06);
+  filter: brightness(1.1);
+}
+
+/* Dev cards */
+.dev-card {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.dev-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
+}
+.dev-card-image img {
+  transition: transform 0.5s ease;
+}
+.dev-card:hover .dev-card-image img {
+  transform: scale(1.05);
+}
+
+/* Motto/Work tab transitions */
+.motto-content,
+.work-content {
+  transition: opacity 0.3s ease;
+}
+.motto-content.active,
+.work-content.active {
+  animation: tabFadeIn 0.4s ease both;
+}
+@keyframes tabFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Motto tabs active indicator */
+.motto-tab,
+.work-tab {
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+.motto-tab:hover,
+.work-tab:hover {
+  transform: translateY(-2px);
+}
+
+/* Details table row hover */
+.details-cell {
+  transition: background 0.25s ease;
+}
+.details-row:hover .details-cell {
+  background: #e4edff;
+}
+.details-row:hover .details-cell.light {
+  background: #d8e6ff;
+}
+
+/* Site-wide working-prototype interactions */
+.service-card,
+.service-step,
+.industry-card,
+.challenge-card,
+.industry-product-card,
+.related-card,
+.article-card,
+.sidebar-widget,
+.contact-info-card,
+.office-card,
+.strength-card,
+.map-item,
+.partner-logo-card,
+.category-block,
+.pg-card {
+  transition: transform 0.32s ease, box-shadow 0.32s ease, border-color 0.32s ease;
+}
+
+.service-card:hover,
+.service-step:hover,
+.industry-card:hover,
+.challenge-card:hover,
+.industry-product-card:hover,
+.related-card:hover,
+.article-card:hover,
+.sidebar-widget:hover,
+.contact-info-card:hover,
+.office-card:hover,
+.strength-card:hover,
+.map-item:hover,
+.partner-logo-card:hover,
+.category-block:hover,
+.pg-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 34px rgba(18, 28, 52, 0.12);
+}
+
+.service-card img,
+.industry-card img,
+.article-card-img img,
+.related-card-img img,
+.office-card img,
+.strength-image img,
+.product-main-image img {
+  transition: transform 0.55s ease, filter 0.35s ease;
+}
+
+.service-card:hover img,
+.industry-card:hover img,
+.article-card:hover .article-card-img img,
+.related-card:hover .related-card-img img,
+.office-card:hover img,
+.strength-image:hover img {
+  transform: scale(1.05);
+}
+
+input,
+textarea,
+select {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #2f69cf !important;
+  box-shadow: 0 0 0 4px rgba(47, 105, 207, 0.12);
+}
+
+.dropdown {
+  transform-origin: top center;
+}
+
+.nav-item.has-dropdown:hover .dropdown {
+  animation: dropdownReveal 0.22s ease both;
+}
+
+@keyframes dropdownReveal {
+  from { opacity: 0; transform: translateY(8px) scaleY(0.96); }
+  to   { opacity: 1; transform: translateY(0) scaleY(1); }
+}
+
+
+/* --- Parallax-like subtle shift for hero bg --- */
+@keyframes slowZoom {
+  0%   { transform: scale(1); }
+  100% { transform: scale(1.06); }
+}
+.hero-slide.active img {
+  animation: slowZoom 8s ease-out forwards;
+}
+
+
+/* --- Loading shimmer for images --- */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+
+/* --- Reduced motion — respect user prefs --- */
+@media (prefers-reduced-motion: reduce) {
+  [data-anim],
+  .hero-subtitle,
+  .hero-title,
+  .hero-btn,
+  .hero-floating-img,
+  .hero-right-text,
+  .hero-slide.active img {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    clip-path: none !important;
+  }
+}

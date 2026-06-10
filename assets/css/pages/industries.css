@@ -1,0 +1,566 @@
+/* ============================================
+   Industries Page Styles
+   ============================================ */
+
+/* --- Hero Banner --- */
+.industries-hero {
+  position: relative;
+  min-height: 405px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0d1224;
+  overflow: hidden;
+}
+
+.industries-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.52;
+}
+
+.industries-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(10, 15, 29, 0.72) 0%, rgba(10, 15, 29, 0.84) 100%),
+    linear-gradient(90deg, rgba(7, 12, 23, 0.78) 0%, rgba(7, 12, 23, 0.22) 48%, rgba(7, 12, 23, 0.78) 100%);
+}
+
+.industries-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 780px;
+  padding: 92px 24px 54px;
+  margin: 0 auto;
+}
+
+.industries-hero-breadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.72);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.industries-hero-breadcrumb a { color: rgba(255,255,255,0.72); }
+.industries-hero-breadcrumb a:hover { color: #f5d94f; }
+
+.industries-hero h1 {
+  color: #ffffff;
+  font-size: clamp(2.7rem, 4.2vw, 4rem);
+  font-weight: 700;
+  margin-bottom: 18px;
+  line-height: 1.1;
+}
+
+.industries-hero p {
+  color: rgba(255,255,255,0.92);
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+
+/* --- Industries Grid --- */
+.industries-list {
+  padding: 80px 0 90px;
+  background: #ffffff;
+}
+
+.industries-list-head {
+  margin-bottom: 42px;
+}
+
+.industries-list-head .section-line {
+  width: 90px;
+  height: 4px;
+  background: #2f69cf;
+  margin-bottom: 16px;
+}
+
+.industries-list-head h2 {
+  font-size: clamp(2rem, 2.8vw, 2.8rem);
+  color: #111a31;
+  line-height: 1.12;
+  margin-bottom: 12px;
+}
+
+.industries-list-head h2 .blue { color: #2f69cf; }
+
+.industries-list-head p {
+  max-width: 780px;
+  font-size: 0.95rem;
+  color: #4f5872;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.ind-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.ind-card {
+  position: relative;
+  min-height: 340px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.ind-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  transition: transform 0.6s cubic-bezier(0.22,0.61,0.36,1);
+}
+
+.ind-card:hover img { transform: scale(1.08); }
+
+.ind-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,16,28,0.1) 0%, rgba(10,16,28,0.72) 100%);
+}
+
+.ind-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  padding: 28px 24px;
+}
+
+.ind-card-content h3 {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.ind-card-content p {
+  color: rgba(255,255,255,0.78);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.ind-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #f5d94f;
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: gap 0.2s ease;
+}
+
+.ind-card-link:hover { gap: 10px; }
+
+
+/* --- Industry Detail Styles --- */
+.industry-overview {
+  padding: 80px 0;
+  background: #ffffff;
+}
+
+.industry-overview-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+.industry-overview-image img {
+  width: 100%;
+  display: block;
+}
+
+.industry-overview-text .section-line {
+  width: 90px;
+  height: 4px;
+  background: #2f69cf;
+  margin-bottom: 16px;
+}
+
+.industry-overview-text h2 {
+  font-size: clamp(1.8rem, 2.6vw, 2.6rem);
+  color: #111a31;
+  line-height: 1.12;
+  margin-bottom: 18px;
+}
+
+.industry-overview-text h2 .blue { color: #2f69cf; }
+
+.industry-overview-text p {
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: #444;
+  margin-bottom: 14px;
+  text-align: justify;
+}
+
+/* Challenges Section */
+.industry-challenges {
+  padding: 80px 0;
+  background: #f6f8fc;
+}
+
+.challenges-head {
+  margin-bottom: 42px;
+}
+
+.challenges-head .section-line {
+  width: 90px;
+  height: 4px;
+  background: #2f69cf;
+  margin-bottom: 16px;
+}
+
+.challenges-head h2 {
+  font-size: clamp(1.8rem, 2.6vw, 2.6rem);
+  color: #111a31;
+  margin-bottom: 12px;
+}
+
+.challenges-head p {
+  max-width: 780px;
+  font-size: 0.95rem;
+  color: #4f5872;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.challenges-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.challenge-card {
+  background: #ffffff;
+  border: 1px solid #e0e4ec;
+  padding: 28px 24px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.challenge-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(18,28,52,0.1);
+}
+
+.challenge-num {
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: #dde4f4;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.challenge-card h4 {
+  font-size: 1rem;
+  color: #2f69cf;
+  margin-bottom: 10px;
+}
+
+.challenge-card p {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: #555;
+  margin-bottom: 0;
+  text-align: justify;
+}
+
+/* Industry Related Products */
+.industry-products {
+  padding: 80px 0;
+  background: #ffffff;
+}
+
+.industry-products-head {
+  margin-bottom: 36px;
+}
+
+.industry-products-head .section-line {
+  width: 90px;
+  height: 4px;
+  background: #2f69cf;
+  margin-bottom: 16px;
+}
+
+.industry-products-head h2 {
+  font-size: clamp(1.8rem, 2.6vw, 2.6rem);
+  color: #111a31;
+}
+
+
+/* --- Capability Section (Industries overview) --- */
+.industries-capability {
+  padding: 80px 0;
+  background: #1c2747;
+}
+
+.industries-capability .section-line {
+  background: #8fd8ff;
+}
+
+.capability-head {
+  margin-bottom: 42px;
+}
+
+.capability-head h2 {
+  color: #ffffff;
+  font-size: clamp(2rem, 2.8vw, 2.8rem);
+  margin-bottom: 12px;
+}
+
+.capability-head p {
+  color: rgba(255,255,255,0.75);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 780px;
+  margin-bottom: 0;
+}
+
+.capability-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.capability-item {
+  text-align: center;
+  padding: 32px 20px;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: background 0.3s ease;
+}
+
+.capability-item:hover {
+  background: rgba(255,255,255,0.04);
+}
+
+.capability-icon {
+  width: 56px;
+  height: 56px;
+  background: rgba(47,105,207,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+}
+
+.capability-icon svg {
+  width: 26px;
+  height: 26px;
+  fill: #8fd8ff;
+}
+
+.capability-item h4 {
+  color: #ffffff;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.capability-item p {
+  color: rgba(255,255,255,0.65);
+  font-size: 0.82rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+
+/* Industry Products Grid */
+.ind-products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.ind-product-item {
+  background: #f6f8fc;
+  border: 1px solid #e0e4ec;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ind-product-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(18,28,52,0.1);
+}
+
+.ind-product-item img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+  background: #ffffff;
+}
+
+.ind-product-item h4 {
+  font-size: 0.95rem;
+  color: #111a31;
+  padding: 16px 16px 8px;
+  margin-bottom: 0;
+}
+
+.ind-product-item p {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: #555;
+  padding: 0 16px 14px;
+  margin-bottom: 0;
+}
+
+.ind-product-link {
+  display: inline-block;
+  margin: 0 16px 18px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #2f69cf;
+  transition: color 0.2s;
+}
+
+.ind-product-link:hover { color: #1a4ea6; }
+
+@media (max-width: 1024px) {
+  .ind-products-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 540px) {
+  .ind-products-grid { grid-template-columns: 1fr; }
+}
+
+
+/* --- CTA Strip (shared) --- */
+.cta-strip {
+  background: #1c2747;
+  color: #ffffff;
+  padding: 18px 0;
+}
+
+.cta-strip-inner {
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 0 var(--space-xl);
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 28px;
+  align-items: center;
+}
+
+.cta-strip-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.92rem;
+  line-height: 1.3;
+}
+
+.cta-strip-item svg {
+  width: 24px;
+  height: 24px;
+  fill: #a8d948;
+  flex: 0 0 auto;
+}
+
+.cta-strip-item strong { color: #ffffff; }
+
+
+/* --- Partners (shared) --- */
+.partners-showcase {
+  padding: 36px 0 28px;
+  background: #ffffff;
+}
+
+.partners-title {
+  text-align: center;
+  color: #111;
+  font-size: 1.55rem;
+  font-weight: 700;
+  margin-bottom: 22px;
+  text-transform: uppercase;
+}
+
+.partners-title .red { color: #ed3b3b; }
+
+.partners-row {
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 0 var(--space-xl);
+  display: flex;
+  gap: 34px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.partner-logo {
+  max-height: 40px;
+  max-width: 120px;
+  object-fit: contain;
+}
+
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+  .ind-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .capability-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .challenges-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .industry-overview-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-strip-inner {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .industries-hero-content {
+    padding: 100px 18px 48px;
+  }
+
+  .ind-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ind-card {
+    min-height: 260px;
+  }
+
+  .challenges-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .partners-row {
+    gap: 22px;
+    padding: 0 16px;
+  }
+}
