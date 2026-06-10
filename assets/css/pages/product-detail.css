@@ -326,9 +326,29 @@
 
 
 /* --- Responsive --- */
+
+/* Large laptop */
+@media (max-width: 1200px) {
+  .product-layout {
+    gap: 40px;
+  }
+
+  .product-main,
+  .related-products {
+    padding: 64px 0;
+  }
+
+  .related-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+}
+
+/* Tablet landscape */
 @media (max-width: 1024px) {
   .product-layout {
     grid-template-columns: 1fr;
+    gap: 36px;
   }
 
   .product-main-image {
@@ -342,20 +362,64 @@
   .cta-strip-inner {
     grid-template-columns: 1fr;
     gap: 14px;
+    text-align: center;
+  }
+
+  .cta-strip-item {
+    justify-content: center;
   }
 }
 
+/* Tablet portrait */
 @media (max-width: 768px) {
   .product-detail-hero {
-    padding: 100px 16px 48px;
+    min-height: 320px;
+    padding: 80px 16px 42px;
+  }
+
+  .product-detail-hero h1 {
+    font-size: clamp(2rem, 6vw, 2.8rem);
+  }
+
+  .product-detail-hero .breadcrumb {
+    font-size: 0.78rem;
+  }
+
+  .product-main,
+  .related-products {
+    padding: 42px 0;
   }
 
   .product-main-image {
-    height: 360px;
+    height: 340px;
   }
 
   .product-thumbs {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .product-thumb {
+    height: 64px;
+  }
+
+  .product-info h2 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+
+  .product-desc {
+    font-size: 0.88rem;
+    margin-bottom: 22px;
+  }
+
+  .product-spec-row {
+    grid-template-columns: 0.8fr 1.2fr;
+  }
+
+  .spec-label,
+  .spec-value {
+    padding: 10px 12px;
+    font-size: 0.82rem;
   }
 
   .product-cta-row {
@@ -366,14 +430,68 @@
     min-width: 0;
     width: 100%;
   }
+
+  .related-head h2 {
+    font-size: clamp(1.4rem, 4vw, 2rem);
+  }
+
+  .related-head {
+    margin-bottom: 24px;
+  }
+
+  .related-card-img {
+    height: 140px;
+  }
 }
 
-@media (max-width: 540px) {
+/* Mobile portrait */
+@media (max-width: 576px) {
+  .product-detail-hero {
+    min-height: 260px;
+    padding: 68px 14px 32px;
+  }
+
+  .product-detail-hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .product-main,
+  .related-products {
+    padding: 32px 0;
+  }
+
   .product-main-image {
-    height: 300px;
+    height: 260px;
+  }
+
+  .product-thumbs {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .product-thumb {
+    height: 56px;
+  }
+
+  .product-spec-row {
+    grid-template-columns: 1fr;
+  }
+
+  .spec-label {
+    border-right: none;
+    border-bottom: 1px solid #e0e4ec;
   }
 
   .related-grid {
     grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .related-card-body {
+    padding: 12px 12px 14px;
+  }
+
+  .related-card-body h4 {
+    font-size: 0.85rem;
   }
 }
+

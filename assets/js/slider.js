@@ -2,6 +2,13 @@
    Hero Slider
    ============================================ */
 
+// Honour the user's "reduce motion" OS/browser setting — auto-advancing
+// carousels are a WCAG 2.2.2 concern, so we suppress autoplay when set.
+function prefersReducedMotion() {
+  return window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   const slides = document.querySelectorAll('.hero-slide');
   const dots = document.querySelectorAll('.hero-dot');
@@ -32,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function startAutoPlay() {
+    if (prefersReducedMotion()) return;
     slideInterval = setInterval(nextSlide, 5000);
   }
 
@@ -158,6 +166,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function resetAutoPlay() {
     clearInterval(autoplay);
+    if (prefersReducedMotion()) return;
     autoplay = setInterval(nextSlide, 3600);
   }
 
@@ -217,12 +226,34 @@ document.addEventListener('DOMContentLoaded', function () {
   const track = carousel.querySelector('.services-track');
   const prevBtn = carousel.querySelector('.services-arrow.prev');
   const nextBtn = carousel.querySelector('.services-arrow.next');
+  const dots = Array.from(carousel.querySelectorAll('.services-dot'));
+  const progressSpan = carousel.querySelector('.services-progress span');
   const originalSlides = Array.from(track.children);
   if (!originalSlides.length) return;
 
+  const INTERVAL = 4400;
   let current = 1;
   let slideWidth = 0;
   let autoplay;
+
+  function syncDots() {
+    const idx = (current - 1 + originalSlides.length) % originalSlides.length;
+    dots.forEach(function (dot, i) {
+      dot.classList.toggle('active', i === idx);
+    });
+  }
+
+  function startProgress() {
+    if (!progressSpan || prefersReducedMotion()) return;
+    progressSpan.style.transition = 'none';
+    progressSpan.style.width = '0%';
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        progressSpan.style.transition = 'width ' + INTERVAL + 'ms linear';
+        progressSpan.style.width = '100%';
+      });
+    });
+  }
 
   function rebuildTrack() {
     while (track.children.length > originalSlides.length) {
@@ -249,33 +280,54 @@ document.addEventListener('DOMContentLoaded', function () {
     measure();
     current += 1;
     setPosition(true);
+    syncDots();
+    startProgress();
   }
 
   function goPrev() {
     measure();
     current -= 1;
     setPosition(true);
+    syncDots();
+    startProgress();
   }
 
   function resetAutoPlay() {
     clearInterval(autoplay);
-    autoplay = setInterval(goNext, 4400);
+    if (prefersReducedMotion()) return;
+    autoplay = setInterval(goNext, INTERVAL);
   }
 
   rebuildTrack();
   measure();
   setPosition(false);
+  syncDots();
+  startProgress();
 
   track.addEventListener('transitionend', function () {
     if (current >= originalSlides.length + 1) {
       current = 1;
       setPosition(false);
+      syncDots();
     }
 
     if (current <= 0) {
       current = originalSlides.length;
       setPosition(false);
+      syncDots();
     }
+  });
+
+  dots.forEach(function (dot, i) {
+    dot.addEventListener('click', function () {
+      clearInterval(autoplay);
+      current = i + 1;
+      measure();
+      setPosition(true);
+      syncDots();
+      startProgress();
+      resetAutoPlay();
+    });
   });
 
   if (prevBtn) {
@@ -297,9 +349,13 @@ document.addEventListener('DOMContentLoaded', function () {
   if (viewport) {
     viewport.addEventListener('mouseenter', function () {
       clearInterval(autoplay);
+      if (progressSpan) {
+        progressSpan.style.transition = 'none';
+      }
     });
 
     viewport.addEventListener('mouseleave', function () {
+      startProgress();
       resetAutoPlay();
     });
   }

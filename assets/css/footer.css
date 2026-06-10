@@ -177,9 +177,62 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
+  .site-footer {
+    padding: 48px 0 80px;
+  }
+
   .footer-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* Brand column spans full row */
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer-bottom-inner {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .site-footer {
+    padding: 40px 0 72px;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-xl);
+    padding: 0 var(--space-md);
+  }
+
+  .footer-bottom {
+    margin-top: 32px;
+    padding: 16px var(--space-md) 0;
+  }
+
+  .footer-bottom-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .footer-social {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .footer-social a {
+    width: 46px;
+    height: 46px;
+  }
+
+  .footer-social svg {
+    width: 18px;
+    height: 18px;
   }
 
   .floating-contact {
@@ -188,15 +241,90 @@
 
   .floating-contact a {
     min-width: 150px;
+    padding: 12px 14px;
   }
 }
 
-@media (max-width: 540px) {
+@media (max-width: 576px) {
+  .site-footer {
+    padding: 32px 0 64px;
+  }
+
   .footer-grid {
     grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    padding: 0 var(--space-sm);
+  }
+
+  .footer-brand {
+    grid-column: auto;
+    text-align: center;
+  }
+
+  .footer-brand img {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .footer-email {
+    justify-content: center;
+  }
+
+  .footer-col h4 {
+    font-size: 0.9rem;
+  }
+
+  .footer-connect {
+    margin-top: var(--space-md);
+  }
+
+  .footer-bottom {
+    margin-top: 24px;
+  }
+
+  .floating-contact {
+    right: 10px;
+    bottom: 16px;
   }
 
   .floating-contact a {
     min-width: 0;
+    padding: 10px 14px;
+    font-size: 0.72rem;
+    border-radius: 10px;
+  }
+
+  .scroll-top {
+    bottom: 80px;
+    right: 12px;
+    width: 44px;
+    height: 44px;
   }
 }
+
+@media (max-width: 400px) {
+  .site-footer {
+    padding: 24px 0 56px;
+  }
+
+  .footer-grid {
+    padding: 0 12px;
+  }
+
+  .footer-social a {
+    width: 40px;
+    height: 40px;
+  }
+
+  .floating-contact {
+    right: 8px;
+    bottom: 12px;
+  }
+
+  .floating-contact a {
+    padding: 8px 12px;
+    font-size: 0.68rem;
+    border-radius: 8px;
+  }
+}
+

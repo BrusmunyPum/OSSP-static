@@ -406,17 +406,46 @@
   background: #fff;
 }
 
+/* --- Responsive --- */
+
+/* Large laptop */
+@media (max-width: 1200px) {
+  .strength-intro,
+  .strength-feature-section,
+  .strength-map-section,
+  .philosophy-band {
+    padding: 64px 0;
+  }
+
+  .strength-intro-grid {
+    gap: 40px;
+  }
+
+  .partner-logo-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Tablet landscape */
 @media (max-width: 1024px) {
   .strength-intro-grid,
   .strength-cards,
   .strength-map-grid,
-  .partner-logo-grid,
   .philosophy-values {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .partner-logo-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   .cta-strip-inner {
     grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .cta-strip-item {
+    justify-content: center;
   }
 
   .distribution-page .strength-intro-grid,
@@ -429,11 +458,139 @@
   .distribution-page .strength-copy {
     order: initial;
   }
+
+  .distribution-page .strength-copy {
+    padding: 28px;
+  }
+
+  .partnership-page .strength-copy {
+    padding: 28px;
+  }
 }
 
-@media (max-width: 640px) {
+/* Tablet portrait */
+@media (max-width: 768px) {
+  .strength-hero {
+    min-height: 320px;
+  }
+
   .strength-hero-content {
-    padding-top: 104px;
+    padding: 80px 18px 42px;
+  }
+
+  .strength-hero h1 {
+    font-size: clamp(2rem, 6vw, 2.8rem);
+    margin-bottom: 14px;
+  }
+
+  .strength-hero p {
+    font-size: 0.9rem;
+  }
+
+  .strength-breadcrumb {
+    font-size: 0.76rem;
+  }
+
+  .strength-intro,
+  .strength-feature-section,
+  .strength-map-section,
+  .philosophy-band {
+    padding: 48px 0;
+  }
+
+  .strength-intro-grid {
+    gap: 28px;
+  }
+
+  .strength-copy h2,
+  .strength-feature-head h2,
+  .strength-map-head h2 {
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+  }
+
+  .strength-image img {
+    min-height: 280px;
+  }
+
+  .strength-card {
+    min-height: auto;
+    padding: 24px 20px;
+  }
+
+  .strength-cards {
+    gap: 18px;
+  }
+
+  .strength-map-grid {
+    gap: 14px;
+  }
+
+  .map-item {
+    padding: 18px 14px;
+  }
+
+  .map-item strong {
+    font-size: 1.4rem;
+  }
+
+  .philosophy-values {
+    gap: 14px;
+  }
+
+  .philosophy-values article {
+    padding: 20px 16px;
+  }
+
+  .philosophy-values span {
+    font-size: 1.8rem;
+  }
+
+  .philosophy-band h2 {
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+  }
+
+  .partner-logo-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .partner-logo-card {
+    min-height: 90px;
+    padding: 16px;
+  }
+
+  .partner-logo-card img {
+    max-height: 40px;
+  }
+
+  .partner-page .strength-card {
+    min-height: auto;
+  }
+
+  .partner-page .partner-logo-card {
+    min-height: 100px;
+  }
+}
+
+/* Mobile portrait */
+@media (max-width: 576px) {
+  .strength-hero {
+    min-height: 260px;
+  }
+
+  .strength-hero-content {
+    padding: 68px 14px 32px;
+  }
+
+  .strength-hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .strength-intro,
+  .strength-feature-section,
+  .strength-map-section,
+  .philosophy-band {
+    padding: 36px 0;
   }
 
   .strength-intro-grid,
@@ -445,6 +602,24 @@
   }
 
   .strength-image img {
-    min-height: 260px;
+    min-height: 220px;
+  }
+
+  .strength-feature-head,
+  .strength-map-head {
+    margin-bottom: 24px;
+  }
+
+  .distribution-page .map-item {
+    min-height: auto;
+  }
+
+  .philosophy-values span {
+    font-size: 1.6rem;
+  }
+
+  .partner-logo-card {
+    min-height: 80px;
   }
 }
+

@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const animMap = [
     // Homepage
-    { sel: '.hero-content, .products-hero-content, .services-hero-content, .industries-hero-content, .strength-hero-content, .knowledge-hero, .article-hero, .contact-hero, .product-detail-hero', anim: 'fade-up' },
+    { sel: '.hero-content, .products-hero-content, .services-hero-content, .industries-hero-content, .strength-hero-content, .knowledge-hero, .article-hero, .contact-hero, .product-detail-hero, .support-hero', anim: 'fade-up' },
     { sel: '.feature-links-header',        anim: 'fade-up' },
     { sel: '.feature-link',                anim: 'fade-up', stagger: true },
     { sel: '.consult-card',                anim: 'zoom-in' },
@@ -87,6 +87,11 @@ document.addEventListener('DOMContentLoaded', function () {
     { sel: '.sidebar-widget',              anim: 'fade-left', stagger: true },
     { sel: '.article-content',             anim: 'fade-up' },
     { sel: '.article-cover, .article-body h2, .article-body p, .related-articles .article-card', anim: 'fade-up', stagger: true },
+
+    // Support / sharing detail pages
+    { sel: '.support-panel',               anim: 'fade-up' },
+    { sel: '.support-sidebar',             anim: 'fade-left' },
+    { sel: '.policy-card, .faq-item, .training-card, .gallery-card, .job-card', anim: 'fade-up', stagger: true },
 
     // Contact page
     { sel: '.contact-info-card',           anim: 'fade-up', stagger: true },

@@ -478,14 +478,39 @@
 
 
 /* --- Responsive --- */
+
+/* Large laptop */
+@media (max-width: 1200px) {
+  .knowledge-layout,
+  .article-layout {
+    grid-template-columns: 1fr 260px;
+    gap: 30px;
+  }
+
+  .knowledge-section,
+  .article-section,
+  .related-articles {
+    padding: 64px 0;
+  }
+}
+
+/* Tablet landscape */
 @media (max-width: 1024px) {
   .knowledge-layout,
   .article-layout {
     grid-template-columns: 1fr;
+    gap: 36px;
   }
 
   .knowledge-sidebar {
     position: static;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .sidebar-widget {
+    margin-bottom: 0;
   }
 
   .related-articles-grid {
@@ -493,21 +518,140 @@
   }
 }
 
+/* Tablet portrait */
 @media (max-width: 768px) {
   .knowledge-hero,
   .article-hero {
-    padding: 100px 16px 48px;
+    min-height: 320px;
+    padding: 80px 16px 42px;
+  }
+
+  .knowledge-hero h1,
+  .article-hero h1 {
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+  }
+
+  .knowledge-hero p,
+  .article-hero p {
+    font-size: 0.9rem;
+  }
+
+  .knowledge-hero .breadcrumb,
+  .article-hero .breadcrumb {
+    font-size: 0.78rem;
+  }
+
+  .knowledge-section,
+  .article-section,
+  .related-articles {
+    padding: 42px 0;
+  }
+
+  .knowledge-sidebar {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .articles-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .article-card-img {
+    height: 180px;
+  }
+
+  .article-card-body {
+    padding: 16px 16px 18px;
   }
 
   .article-content {
-    padding: 28px 20px;
+    padding: 24px 18px;
+  }
+
+  .article-body blockquote {
+    padding: 14px 18px;
+    margin: 18px 0;
+  }
+
+  .article-hero-meta {
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 0.78rem;
   }
 
   .related-articles-grid {
     grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .related-articles-head h2 {
+    font-size: clamp(1.4rem, 4vw, 1.8rem);
+  }
+
+  .related-articles-head {
+    margin-bottom: 24px;
+  }
+
+  .pagination {
+    margin-top: 28px;
+  }
+
+  .page-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 0.82rem;
+  }
+
+  .article-footer {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
+
+/* Mobile portrait */
+@media (max-width: 576px) {
+  .knowledge-hero,
+  .article-hero {
+    min-height: 260px;
+    padding: 68px 14px 32px;
+  }
+
+  .knowledge-hero h1,
+  .article-hero h1 {
+    font-size: 1.7rem;
+  }
+
+  .knowledge-section,
+  .article-section,
+  .related-articles {
+    padding: 32px 0;
+  }
+
+  .article-card-img {
+    height: 160px;
+  }
+
+  .article-card-body h3 {
+    font-size: 0.92rem;
+  }
+
+  .article-content {
+    padding: 20px 14px;
+  }
+
+  .sidebar-widget {
+    padding: 18px 16px;
+  }
+
+  .sidebar-widget h4 {
+    font-size: 0.88rem;
+    margin-bottom: 14px;
+  }
+
+  .article-hero-cat {
+    font-size: 0.72rem;
+    padding: 3px 10px;
+  }
+}
+

@@ -1089,7 +1089,79 @@
    RESPONSIVE
    ============================ */
 
-@media (max-width: 1024px) {
+/* --- Large tablets / small laptops --- */
+@media (max-width: 1200px) {
+  .about-intro-content {
+    gap: 32px;
+  }
+
+  .about-us-inner {
+    gap: 36px;
+  }
+
+  .partnership-inner {
+    gap: 36px;
+  }
+
+  .products-inner {
+    gap: 36px;
+  }
+
+  .dev-cards {
+    gap: 24px;
+  }
+
+  .commitment-cards {
+    gap: 18px;
+  }
+}
+
+/* --- Tablets --- */
+@media (max-width: 992px) {
+  .about-hero {
+    min-height: 340px;
+  }
+
+  .about-hero-content {
+    padding: 100px 20px 48px;
+  }
+
+  .about-intro {
+    padding: 60px 0;
+  }
+
+  .about-us {
+    padding: 60px 0;
+  }
+
+  .about-details {
+    padding: 60px 0;
+  }
+
+  .about-development {
+    padding: 60px 0;
+  }
+
+  .about-motto {
+    padding: 60px 0;
+  }
+
+  .about-work {
+    padding: 60px 0;
+  }
+
+  .about-partnership {
+    padding: 60px 0;
+  }
+
+  .about-products {
+    padding: 60px 0;
+  }
+
+  .about-more {
+    padding: 60px 0;
+  }
+
   .about-intro-content,
   .about-us-inner,
   .dev-cards,
@@ -1124,11 +1196,68 @@
     grid-template-columns: 1fr;
     gap: 14px;
   }
+
+  .about-intro-logo {
+    margin: 0 auto;
+  }
+
+  .motto-content-inner {
+    gap: 24px;
+  }
+
+  .motto-image {
+    width: 220px;
+  }
 }
 
+/* --- Mobile landscape --- */
 @media (max-width: 768px) {
+  .about-hero {
+    min-height: 300px;
+  }
+
   .about-hero-content {
     padding: 100px 18px 48px;
+  }
+
+  .about-intro {
+    padding: 48px 0;
+  }
+
+  .about-us {
+    padding: 48px 0;
+  }
+
+  .about-details {
+    padding: 48px 0;
+  }
+
+  .about-development {
+    padding: 48px 0;
+  }
+
+  .about-motto {
+    padding: 48px 0;
+  }
+
+  .about-work {
+    padding: 48px 0;
+  }
+
+  .about-partnership {
+    padding: 48px 0;
+  }
+
+  .about-products {
+    padding: 48px 0;
+  }
+
+  .about-more {
+    padding: 48px 0;
+  }
+
+  .about-commitments {
+    padding: 40px 0 60px;
   }
 
   .about-intro-title-row {
@@ -1146,6 +1275,10 @@
 
   .details-row {
     grid-template-columns: 1fr;
+  }
+
+  .details-cell {
+    border-right: none;
   }
 
   .motto-tabs,
@@ -1176,20 +1309,121 @@
     gap: 22px;
     padding: 0 16px;
   }
+
+  .membership-header {
+    padding-left: 16px;
+  }
+
+  .membership-top {
+    padding: 48px 0 20px;
+  }
+
+  .dev-card-image {
+    height: 180px;
+  }
+
+  .work-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  .mission-col {
+    padding: 36px 24px;
+    min-height: 240px;
+  }
+
+  .mission-society {
+    padding: 36px 24px;
+  }
 }
 
-@media (max-width: 540px) {
+/* --- Mobile portrait --- */
+@media (max-width: 576px) {
+  .about-hero {
+    min-height: 260px;
+  }
+
+  .about-hero-content {
+    padding: 90px 16px 36px;
+  }
+
   .about-hero-heading {
     font-size: 1rem;
     letter-spacing: 1px;
+  }
+
+  .about-hero-desc {
+    font-size: 0.85rem;
+  }
+
+  .about-hero-chevron {
+    width: 44px;
+    height: 44px;
+  }
+
+  .about-intro {
+    padding: 36px 0;
+  }
+
+  .about-us,
+  .about-details,
+  .about-development,
+  .about-motto,
+  .about-work,
+  .about-partnership,
+  .about-products,
+  .about-more {
+    padding: 36px 0;
   }
 
   .about-intro-title-row .section-line {
     width: 30px;
   }
 
+  .about-intro-title-row {
+    margin-bottom: 32px;
+  }
+
   .pill-btn-outline {
     min-width: 0;
     width: 100%;
+  }
+
+  .puzzle-grid {
+    max-width: 100%;
+  }
+
+  .puzzle-piece {
+    padding: 20px 12px;
+    font-size: 0.72rem;
+  }
+
+  .dev-card-body {
+    padding: 18px 16px 22px;
+  }
+
+  .motto-content-inner {
+    padding: 24px 18px;
+  }
+
+  .details-cell {
+    padding: 12px 16px;
+  }
+
+  .more-title {
+    margin-bottom: 28px;
+  }
+
+  .commitment-card {
+    padding: 22px 18px;
+  }
+
+  .partners-title {
+    font-size: 1.2rem;
+  }
+
+  .cta-strip-item {
+    font-size: 0.85rem;
   }
 }

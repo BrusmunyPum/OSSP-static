@@ -519,6 +519,32 @@
 
 
 /* --- Responsive --- */
+
+/* Large laptop */
+@media (max-width: 1200px) {
+  .ind-grid {
+    gap: 20px;
+  }
+
+  .capability-grid {
+    gap: 20px;
+  }
+
+  .ind-products-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .industries-list,
+  .industry-overview,
+  .industry-challenges,
+  .industry-products,
+  .industries-capability {
+    padding: 64px 0;
+  }
+}
+
+/* Tablet landscape */
 @media (max-width: 1024px) {
   .ind-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -534,33 +560,191 @@
 
   .industry-overview-inner {
     grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .ind-products-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .cta-strip-inner {
     grid-template-columns: 1fr;
     gap: 14px;
+    text-align: center;
+  }
+
+  .cta-strip-item {
+    justify-content: center;
   }
 }
 
+/* Tablet portrait */
 @media (max-width: 768px) {
+  .industries-hero {
+    min-height: 320px;
+  }
+
   .industries-hero-content {
-    padding: 100px 18px 48px;
+    padding: 80px 18px 42px;
+  }
+
+  .industries-hero h1 {
+    font-size: clamp(2rem, 6vw, 2.8rem);
+  }
+
+  .industries-hero p {
+    font-size: 0.9rem;
+  }
+
+  .industries-hero-breadcrumb {
+    font-size: 0.78rem;
+  }
+
+  .industries-list,
+  .industry-overview,
+  .industry-challenges,
+  .industry-products,
+  .industries-capability {
+    padding: 48px 0;
+  }
+
+  .industries-list-head,
+  .challenges-head,
+  .industry-products-head,
+  .capability-head {
+    margin-bottom: 28px;
+  }
+
+  .industries-list-head h2,
+  .challenges-head h2,
+  .industry-products-head h2,
+  .capability-head h2,
+  .industry-overview-text h2 {
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
   }
 
   .ind-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .ind-card {
     min-height: 260px;
   }
 
+  .ind-card-content {
+    padding: 20px 18px;
+  }
+
+  .ind-card-content h3 {
+    font-size: 1.05rem;
+  }
+
   .challenges-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .challenge-card {
+    padding: 22px 20px;
+  }
+
+  .challenge-num {
+    font-size: 2.2rem;
+  }
+
+  .capability-grid {
+    gap: 16px;
+  }
+
+  .capability-item {
+    padding: 24px 16px;
+  }
+
+  .capability-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 14px;
+  }
+
+  .ind-products-grid {
+    gap: 16px;
   }
 
   .partners-row {
-    gap: 22px;
+    gap: 18px;
     padding: 0 16px;
   }
+
+  .partners-title {
+    font-size: 1.25rem;
+  }
+
+  .partner-logo {
+    max-height: 32px;
+    max-width: 100px;
+  }
 }
+
+/* Mobile portrait */
+@media (max-width: 576px) {
+  .industries-hero {
+    min-height: 280px;
+  }
+
+  .industries-hero-content {
+    padding: 72px 16px 36px;
+  }
+
+  .industries-hero h1 {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+  }
+
+  .industries-hero p {
+    font-size: 0.85rem;
+  }
+
+  .industries-list,
+  .industry-overview,
+  .industry-challenges,
+  .industry-products,
+  .industries-capability {
+    padding: 36px 0;
+  }
+
+  .ind-card {
+    min-height: 220px;
+  }
+
+  .capability-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ind-products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .industry-overview-inner {
+    gap: 24px;
+  }
+
+  .industry-overview-text p {
+    font-size: 0.88rem;
+  }
+
+  .partners-row {
+    gap: 14px;
+  }
+
+  .partner-logo {
+    max-height: 28px;
+    max-width: 80px;
+  }
+
+  .partners-title {
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+  }
+}
+

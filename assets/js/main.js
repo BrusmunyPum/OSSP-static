@@ -9,21 +9,35 @@ document.addEventListener('DOMContentLoaded', function() {
   const mainNav = document.querySelector('.main-nav');
   const navOverlay = document.querySelector('.nav-overlay');
 
+  function setMenu(open) {
+    if (!navToggle || !mainNav) return;
+    navToggle.classList.toggle('active', open);
+    mainNav.classList.toggle('active', open);
+    if (navOverlay) navOverlay.classList.toggle('active', open);
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+
   if (navToggle) {
+    navToggle.setAttribute('aria-expanded', 'false');
+
     navToggle.addEventListener('click', function() {
-      this.classList.toggle('active');
-      mainNav.classList.toggle('active');
-      if (navOverlay) navOverlay.classList.toggle('active');
-      document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+      setMenu(!mainNav.classList.contains('active'));
+    });
+
+    // Keyboard support — the toggle is a <div role="button">, so it
+    // needs Enter/Space handled manually to be operable without a mouse.
+    navToggle.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+        e.preventDefault();
+        setMenu(!mainNav.classList.contains('active'));
+      }
     });
   }
 
   if (navOverlay) {
     navOverlay.addEventListener('click', function() {
-      navToggle.classList.remove('active');
-      mainNav.classList.remove('active');
-      this.classList.remove('active');
-      document.body.style.overflow = '';
+      setMenu(false);
     });
   }
 
@@ -36,36 +50,34 @@ document.addEventListener('DOMContentLoaded', function() {
         const dropdown = this.nextElementSibling;
         if (dropdown && dropdown.classList.contains('dropdown')) {
           dropdown.classList.toggle('active');
+          this.classList.toggle('open', dropdown.classList.contains('active'));
         }
       }
     });
   });
 
-  // --- Sticky Header ---
+  // --- Sticky Header + Scroll-to-Top (single throttled listener) ---
   const header = document.querySelector('.site-header');
-  let lastScroll = 0;
+  const scrollTopBtn = document.querySelector('.scroll-top');
+  let scrollScheduled = false;
+
+  function onScrollFrame() {
+    scrollScheduled = false;
+    const y = window.pageYOffset;
+    if (header) header.classList.toggle('scrolled', y > 50);
+    if (scrollTopBtn) scrollTopBtn.classList.toggle('visible', y > 400);
+  }
 
   window.addEventListener('scroll', function() {
-    const currentScroll = window.pageYOffset;
-    if (currentScroll > 50) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
+    if (!scrollScheduled) {
+      scrollScheduled = true;
+      window.requestAnimationFrame(onScrollFrame);
     }
-    lastScroll = currentScroll;
-  });
+  }, { passive: true });
 
-  // --- Scroll to Top Button ---
-  const scrollTopBtn = document.querySelector('.scroll-top');
+  onScrollFrame(); // set initial state on load
+
   if (scrollTopBtn) {
-    window.addEventListener('scroll', function() {
-      if (window.pageYOffset > 400) {
-        scrollTopBtn.classList.add('visible');
-      } else {
-        scrollTopBtn.classList.remove('visible');
-      }
-    });
-
     scrollTopBtn.addEventListener('click', function() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
@@ -119,12 +131,43 @@ document.addEventListener('DOMContentLoaded', function() {
   // --- Smooth scroll for anchor links ---
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
+      const href = this.getAttribute('href');
+      // Ignore bare "#" placeholders — querySelector('#') throws.
+      if (!href || href === '#') return;
+      const target = document.querySelector(href);
       if (target) {
+        e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
   });
+
+  // --- Contact form (no backend wired: graceful client-side handling) ---
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (!contactForm.checkValidity()) {
+        contactForm.reportValidity();
+        return;
+      }
+
+      let note = contactForm.querySelector('.form-success');
+      if (!note) {
+        note = document.createElement('p');
+        note.className = 'form-success';
+        note.setAttribute('role', 'status');
+        note.style.marginTop = '16px';
+        note.style.padding = '12px 16px';
+        note.style.background = '#e7f6ec';
+        note.style.color = '#1c6b3d';
+        note.style.borderRadius = '6px';
+        note.style.fontSize = '0.9rem';
+        contactForm.appendChild(note);
+      }
+      note.textContent = 'Thank you! Your message has been received. Our team will contact you shortly.';
+      contactForm.reset();
+    });
+  }
 
 });
