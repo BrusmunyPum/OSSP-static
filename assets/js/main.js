@@ -115,11 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   const activeGroups = {
-    'product-detail.html': 'products.html',
     'industry-detail.html': 'industries.html',
-    'distribution-system.html': 'services.html',
-    'partner.html': 'services.html',
-    'strategic-partnership.html': 'services.html',
     'article-detail.html': 'knowledge.html'
   };
 
@@ -132,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
-      // Ignore bare "#" placeholders — querySelector('#') throws.
+      // Ignore bare "#" links because querySelector('#') throws.
       if (!href || href === '#') return;
       const target = document.querySelector(href);
       if (target) {
