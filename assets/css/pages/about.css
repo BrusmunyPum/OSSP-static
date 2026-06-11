@@ -59,15 +59,20 @@
   color: #f5d94f;
 }
 
-.about-hero-title {
-  font-size: clamp(2.7rem, 4.2vw, 4rem);
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 14px;
+.about-hero-logo {
+  margin-bottom: 20px;
 }
 
-.about-hero-title .yellow {
-  color: #f5d94f;
+.about-hero-logo img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  padding: 6px;
+  display: block;
+  margin: 0 auto;
 }
 
 .about-hero-heading {
@@ -1425,5 +1430,143 @@
 
   .cta-strip-item {
     font-size: 0.85rem;
+  }
+}
+
+
+/* ============================================
+   Certificates Section
+   ============================================ */
+
+.about-certificates {
+  padding: 80px 0 60px;
+  background: #f8f9fc;
+}
+
+.about-certificates .section-head {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.about-certificates .section-head p {
+  color: #666;
+  font-size: 0.95rem;
+  margin-top: 12px;
+}
+
+/* Each certificate row */
+.cert-row {
+  max-width: 860px;
+  margin: 0 auto 64px;
+}
+
+.cert-row:last-child {
+  margin-bottom: 0;
+}
+
+/* Label area above image */
+.cert-row-label {
+  margin-bottom: 18px;
+}
+
+.cert-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #2f69cf;
+  background: rgba(47, 105, 207, 0.1);
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 10px;
+}
+
+.cert-row-label h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1a2540;
+  margin-bottom: 4px;
+}
+
+.cert-row-label p {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+/* The certificate image itself */
+.cert-row > img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.13);
+  cursor: zoom-in;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.cert-row > img:hover {
+  transform: scale(1.015);
+  box-shadow: 0 16px 56px rgba(0, 0, 0, 0.2);
+}
+
+/* Lightbox */
+.cert-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.cert-lightbox.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.cert-lightbox img {
+  max-width: min(780px, 92vw);
+  max-height: 92vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+}
+
+.cert-lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 1.2rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+  line-height: 1;
+}
+
+.cert-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+@media (max-width: 768px) {
+  .cert-row {
+    margin-bottom: 48px;
+  }
+
+  .about-certificates {
+    padding: 56px 0 40px;
   }
 }

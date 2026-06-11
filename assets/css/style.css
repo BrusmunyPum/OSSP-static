@@ -1,6 +1,6 @@
 /* ============================================
-   STD&D Global Design System
-   Color scheme matched to stdvn.com
+   OSSP Cambodia Global Design System
+   Color scheme adapted for OSSP Cambodia
    ============================================ */
 
 /* --- CSS Custom Properties --- */
@@ -611,5 +611,60 @@ p {
 
   .floating-contact a {
     min-height: 44px;
+  }
+}
+
+
+/* ============================================
+   Clients Showcase (replaces 6-logo partner rows)
+   ============================================ */
+
+.clients-showcase-wrap {
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 0 var(--space-xl);
+}
+
+.clients-showcase-frame {
+  background: #f5f8ff;
+  border: 1px solid rgba(47, 105, 207, 0.12);
+  border-radius: 20px;
+  padding: 32px 32px 20px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  box-shadow: 0 4px 32px rgba(28, 39, 71, 0.07);
+}
+
+.clients-showcase-frame img {
+  width: 100%;
+  min-width: 720px;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+
+.clients-showcase-caption {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 0.78rem;
+  color: #8a9ab8;
+  letter-spacing: 0.3px;
+}
+
+@media (max-width: 768px) {
+  .clients-showcase-wrap {
+    padding: 0 var(--space-md);
+  }
+
+  .clients-showcase-frame {
+    padding: 20px 16px 14px;
+    border-radius: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .clients-showcase-frame {
+    padding: 14px 10px 10px;
+    border-radius: 10px;
   }
 }

@@ -19,8 +19,13 @@
 }
 
 .footer-brand img {
-  width: 118px;
-  height: auto;
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  padding: 4px;
   margin-bottom: var(--space-lg);
 }
 
