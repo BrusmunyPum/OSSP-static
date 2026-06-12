@@ -391,10 +391,9 @@ p {
   color: #f1c40f;
 }
 
-.floating-contact .contact-icon {
-  width: 20px;
-  height: 20px;
-  fill: #f5d94f;
+.floating-contact a i {
+  font-size: 18px;
+  color: #f5d94f;
 }
 
 /* --- Animations --- */
@@ -565,10 +564,9 @@ p {
     gap: 4px;
   }
 
-  .floating-contact .contact-icon {
-    width: 16px;
-    height: 16px;
-  }
+  .floating-contact a i {
+  font-size: 14px;
+}
 
   .scroll-top {
     bottom: 80px;

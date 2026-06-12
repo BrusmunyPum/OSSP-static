@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login | OSSP Cambodia</title>
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/admin.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  </head>
+  <body class="login-body">
+    <div class="login-wrap">
+      <div class="login-card">
+        <div class="login-logo">
+          <img src="../assets/images/logo.png" alt="OSSP Cambodia" />
+        </div>
+        <p class="login-eyebrow">Internal Access</p>
+        <h1>OSSP Admin</h1>
+        <p class="login-sub">Industrial supply website management</p>
+
+        <form id="loginForm" autocomplete="off">
+          <div class="form-field">
+            <label for="loginUser">Username</label>
+            <div class="input-icon">
+              <i class="fa-solid fa-user"></i>
+              <input type="text" id="loginUser" placeholder="Enter username" required />
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="loginPass">Password</label>
+            <div class="input-icon">
+              <i class="fa-solid fa-lock"></i>
+              <input type="password" id="loginPass" placeholder="Enter password" required />
+            </div>
+          </div>
+
+          <p class="login-error" id="loginError">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            Invalid username or password.
+          </p>
+
+          <button type="submit" class="btn btn-primary btn-block">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            Sign In
+          </button>
+        </form>
+
+        <!-- <p class="login-hint">
+          <i class="fa-solid fa-circle-info"></i>
+          Demo: <code>admin</code> / <code>Admin@1234</code>
+        </p> -->
+      </div>
+
+      <p class="login-foot">&copy; 2026 O S S P (Cambodia) Co., Ltd. - Internal use only</p>
+    </div>
+
+    <script>
+      document.getElementById('loginForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var u = document.getElementById('loginUser').value.trim();
+        var p = document.getElementById('loginPass').value;
+        if (u === 'admin' && p === 'Admin@1234') {
+          sessionStorage.setItem('ossp_admin', 'true');
+          window.location.href = 'index.html';
+        } else {
+          document.getElementById('loginError').classList.add('show');
+        }
+      });
+    </script>
+  </body>
+</html>

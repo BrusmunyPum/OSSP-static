@@ -239,6 +239,14 @@
   box-shadow: var(--shadow-lg);
 }
 
+.category-block-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  background: linear-gradient(135deg, var(--color-navy-light), var(--color-navy));
+}
+
 .category-block-header {
   padding: var(--space-lg) var(--space-xl);
   background: var(--color-red);
@@ -518,6 +526,10 @@
 
   .category-block-header {
     padding: 14px 16px;
+  }
+
+  .category-block-image {
+    height: 150px;
   }
 
   .category-block-list {

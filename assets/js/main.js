@@ -141,28 +141,80 @@ document.addEventListener('DOMContentLoaded', function() {
   // --- Contact form (no backend wired: graceful client-side handling) ---
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    function setFieldError(id, msg) {
+      const field = document.getElementById(id);
+      if (!field) return;
+      field.classList.toggle('input-error', !!msg);
+      let err = field.parentElement.querySelector('.field-error');
+      if (msg) {
+        if (!err) {
+          err = document.createElement('span');
+          err.className = 'field-error';
+          field.parentElement.appendChild(err);
+        }
+        err.textContent = msg;
+      } else if (err) {
+        err.remove();
+      }
+    }
+
+    function validateForm() {
+      let valid = true;
+      const firstName = contactForm.querySelector('#firstName');
+      const lastName  = contactForm.querySelector('#lastName');
+      const email     = contactForm.querySelector('#email');
+      const message   = contactForm.querySelector('#message');
+
+      if (!firstName || !firstName.value.trim()) {
+        setFieldError('firstName', 'First name is required.');
+        valid = false;
+      } else { setFieldError('firstName', ''); }
+
+      if (!lastName || !lastName.value.trim()) {
+        setFieldError('lastName', 'Last name is required.');
+        valid = false;
+      } else { setFieldError('lastName', ''); }
+
+      if (!email || !email.value.trim()) {
+        setFieldError('email', 'Email address is required.');
+        valid = false;
+      } else if (!EMAIL_RE.test(email.value.trim())) {
+        setFieldError('email', 'Please enter a valid email address.');
+        valid = false;
+      } else { setFieldError('email', ''); }
+
+      if (!message || !message.value.trim()) {
+        setFieldError('message', 'Please enter your message.');
+        valid = false;
+      } else { setFieldError('message', ''); }
+
+      return valid;
+    }
+
     contactForm.addEventListener('submit', function(e) {
       e.preventDefault();
-      if (!contactForm.checkValidity()) {
-        contactForm.reportValidity();
-        return;
-      }
+      if (!validateForm()) return;
 
       let note = contactForm.querySelector('.form-success');
       if (!note) {
         note = document.createElement('p');
         note.className = 'form-success';
         note.setAttribute('role', 'status');
-        note.style.marginTop = '16px';
-        note.style.padding = '12px 16px';
-        note.style.background = '#e7f6ec';
-        note.style.color = '#1c6b3d';
-        note.style.borderRadius = '6px';
-        note.style.fontSize = '0.9rem';
+        note.style.cssText = 'margin-top:16px;padding:12px 16px;background:#e7f6ec;color:#1c6b3d;border-radius:6px;font-size:0.9rem;';
         contactForm.appendChild(note);
       }
       note.textContent = 'Thank you! Your message has been received. Our team will contact you shortly.';
       contactForm.reset();
+      contactForm.querySelectorAll('.input-error').forEach(function(el) { el.classList.remove('input-error'); });
+      contactForm.querySelectorAll('.field-error').forEach(function(el) { el.remove(); });
+    });
+
+    // Clear individual field errors on input
+    ['firstName', 'lastName', 'email', 'message'].forEach(function(id) {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener('input', function() { setFieldError(id, ''); });
     });
   }
 
